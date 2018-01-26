@@ -174,6 +174,8 @@ class DocumentMeta(with_metaclass(Prepareable, type)):
                 scopes.append(value)
                 for scope_key in iterkeys(value.__fields__):
                     pre_fields[scope_key] = to_be_replaced
+            elif value is None:
+                del fields[key]
 
         for name, field in iteritems(pre_fields):
             if field is to_be_replaced:
